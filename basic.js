@@ -1,16 +1,18 @@
 "use strict"
-
+// require postgres after installing
 var pg = require('pg');
 
+// configuration of database
 var config = {
     database: "library_example_app",
     port: 5432,
     host: "localhost"
 };
 
+// pg.connect - 2 parameters is config setup and a function to connect to server
 // SELECT SOME DATA
 pg.connect(config, function(err, client, done){
-		// Check for errors
+		// err - first parameter checking for errors in connection
         if (err) {
              console.error("OOOPS!!! SOMETHING WENT WRONG!", err);
         }
@@ -40,7 +42,7 @@ pg.connect(config, function(err, client, done){
         // Client object represents a connection object
         // Let's retrieve all books
         client.query("INSERT INTO books (title, author) VALUES ($1, $2)",
-					["The Great Gatsby", "Fitzgerald"], 
+					["The Great Gatsby", "Fitzgerald"],
 					function(err, resultSet){
 	        if (err) {
 	            console.log(err);
