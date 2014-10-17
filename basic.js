@@ -1,6 +1,8 @@
 "use strict"
 // require postgres after installing
 var pg = require('pg');
+// pg translates from javascript to sql/vice versa
+
 
 // configuration of database
 var config = {
@@ -18,6 +20,8 @@ pg.connect(config, function(err, client, done){
         }
         // Client object represents a connection object
         // Let's retrieve all books
+        // result set from PSQL from our query
+        // .query in this instance is only referencing postgres
         client.query("SELECT * FROM BOOKS", function(err, resultSet){
 	        if (err) {
 	            console.log(err);
@@ -42,7 +46,8 @@ pg.connect(config, function(err, client, done){
         // Client object represents a connection object
         // Let's retrieve all books
         client.query("INSERT INTO books (title, author) VALUES ($1, $2)",
-					["The Great Gatsby", "Fitzgerald"],
+
+                    ["The Great Gatsby", "Fitzgerald"],
 					function(err, resultSet){
 	        if (err) {
 	            console.log(err);
