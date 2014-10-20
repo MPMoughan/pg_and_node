@@ -1,17 +1,10 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Library Database</title>
-<!--   <meta name="description" content="">
-  <meta name="author" content=""> -->
-  <link rel="stylesheet" href="">
-</head>
-<body>
+<% include partials/header %>
+
   <form action="/books/<%= book.id %>?_method=put" method="post">
 		<input name="book[title]" value="<%= book.title %>">
 		<input name="book[author]" value="<%= book.author %>">
 		<input type="submit" value="Save">
 	</form>
-</body>
-</html>
+
+
+<% include partials/footer %>

@@ -9,13 +9,14 @@ var express = require('express'),
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
+app.use(express.static(__dirname + "/public"));
 
 // empty array for creating instances of library
 var library = new Library();
 
 //Home page
 app.get('/', function(req, res){
-  res.render('home');
+  res.render('library/home');
 });
 
 //Index
@@ -40,7 +41,7 @@ app.get('/books/new', function(req, res){
 app.post('/books', function(req, res) {
   console.log("/books -> Implement me.");
     library.add(req.body.book.title, req.body.book.author, function(){
-  res.redirect('/books');
+  res.redirect('library/books');
   });
 });
 
@@ -58,6 +59,7 @@ app.get('/books/:id/edit', function(req, res) {
   var id = req.params.id;
   library.findById(id, function(foundBook){
     res.render('library/edit', {book: foundBook});
+    // how come this needs the route with library?
   });
 });
 

@@ -58,7 +58,7 @@ Library.prototype.findById = function(id, buzzer) {
   var foundBook = {}
   db.query("SELECT * FROM books WHERE id=$1",[id], function(err,resultSet){
     if(err) console.log("OOPS, something went wrong", err);
-    var foundBook = resultSet.rows[0];
+    foundBook = resultSet.rows[0];
     buzzer(foundBook);
   });
 };
